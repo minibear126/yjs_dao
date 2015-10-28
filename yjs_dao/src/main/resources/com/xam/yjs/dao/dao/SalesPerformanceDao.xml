@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.SalesPerformanceDao">
+
+	<select id="findByPKey" resultType="SalesPerformanceDo">
+		select * from t_sales_performance
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="SalesPerformanceDo">
+		select * from t_sales_performance
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_sales_performance
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_sales_performance (
+		id,accountId,avantages,validVantages,total,rankId,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{accountId},#{avantages},#{validVantages},#{total},#{rankId},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_sales_performance
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_sales_performance set
+		id=#{id},accountId=#{accountId},avantages=#{avantages},validVantages=#{validVantages},total=#{total},rankId=#{rankId},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

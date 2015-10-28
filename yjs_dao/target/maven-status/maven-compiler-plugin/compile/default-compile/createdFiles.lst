@@ -1,0 +1,10 @@
+com\xam\yjs\dao\cache\BaseDaoCache.class
+com\xam\yjs\dao\util\SecuritySerialize.class
+com\xam\yjs\dao\model\PaymentDiscountDo.class
+com\xam\yjs\dao\cache\CacheManager.class
+com\xam\yjs\dao\cache\PropertyCache.class
+com\xam\yjs\dao\redis\BaseJedisResourse.class
+com\xam\yjs\dao\resourceUtil\JedisRecovery.class
+com\xam\yjs\dao\util\SerializeUtil.class
+com\xam\yjs\dao\util\RedisConst.class
+com\xam\yjs\dao\dao\PaymentDiscountDao.class

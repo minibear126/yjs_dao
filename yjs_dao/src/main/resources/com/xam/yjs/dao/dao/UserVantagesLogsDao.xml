@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.UserVantagesLogsDao">
+
+	<select id="findByPKey" resultType="UserVantagesLogsDo">
+		select * from t_user_vantages_logs
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="UserVantagesLogsDo">
+		select * from t_user_vantages_logs
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_user_vantages_logs
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_user_vantages_logs (
+		id,vantagesId,vantages,eventId,eventName,buildDes,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{vantagesId},#{vantages},#{eventId},#{eventName},#{buildDes},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_user_vantages_logs
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_user_vantages_logs set
+		id=#{id},vantagesId=#{vantagesId},vantages=#{vantages},eventId=#{eventId},eventName=#{eventName},buildDes=#{buildDes},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

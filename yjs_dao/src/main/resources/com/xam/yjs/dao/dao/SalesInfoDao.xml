@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.SalesInfoDao">
+
+	<select id="findByPKey" resultType="SalesInfoDo">
+		select * from t_sales_info
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="SalesInfoDo">
+		select * from t_sales_info
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_sales_info
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_sales_info (
+		id,accountId,developerId,buildId,saleTel,saleName,email,weixin,sex,type,describe,belonging,isMainBuilding,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{accountId},#{developerId},#{buildId},#{saleTel},#{saleName},#{email},#{weixin},#{sex},#{type},#{describe},#{belonging},#{isMainBuilding},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_sales_info
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_sales_info set
+		id=#{id},accountId=#{accountId},developerId=#{developerId},buildId=#{buildId},saleTel=#{saleTel},saleName=#{saleName},email=#{email},weixin=#{weixin},sex=#{sex},type=#{type},describe=#{describe},belonging=#{belonging},isMainBuilding=#{isMainBuilding},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

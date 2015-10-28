@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.UserAccountDao">
+	<select id="findUserAccountByUsername" resultType="UserAccountDo">
+		select * from t_user_account
+		where username=#{username}
+	</select>
+	
+	
+	
+	
+	<select id="findByPKey" resultType="UserAccountDo">
+		select * from t_user_account
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="UserAccountDo">
+		select * from t_user_account
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_user_account
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_user_account (
+		id,username,password,status,enabled,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{username},#{password},#{status},#{enabled},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_user_account
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_user_account set
+		id=#{id},username=#{username},password=#{password},status=#{status},enabled=#{enabled},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

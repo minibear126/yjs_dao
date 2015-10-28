@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.SubscribeUserToBulidingDao">
+
+	<select id="findByPKey" resultType="SubscribeUserToBulidingDo">
+		select * from t_subscribe_user_to_buliding
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="SubscribeUserToBulidingDo">
+		select * from t_subscribe_user_to_buliding
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_subscribe_user_to_buliding
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_subscribe_user_to_buliding (
+		id,accountId,salesAccountId,subscribeBuildId,status,authority,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{accountId},#{salesAccountId},#{subscribeBuildId},#{status},#{authority},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_subscribe_user_to_buliding
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_subscribe_user_to_buliding set
+		id=#{id},accountId=#{accountId},salesAccountId=#{salesAccountId},subscribeBuildId=#{subscribeBuildId},status=#{status},authority=#{authority},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

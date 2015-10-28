@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.UserToDeveloperDao">
+
+	<select id="findByPKey" resultType="UserToDeveloperDo">
+		select * from t_user_to_developer
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="UserToDeveloperDo">
+		select * from t_user_to_developer
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_user_to_developer
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_user_to_developer (
+		id,accountId,developerId,department,remark,status,isMainDeveloper,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{accountId},#{developerId},#{department},#{remark},#{status},#{isMainDeveloper},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_user_to_developer
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_user_to_developer set
+		id=#{id},accountId=#{accountId},developerId=#{developerId},department=#{department},remark=#{remark},status=#{status},isMainDeveloper=#{isMainDeveloper},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.BuildingInfoDao">
+
+	<select id="findByPKey" resultType="BuildingInfoDo">
+		select * from t_building_info
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="BuildingInfoDo">
+		select * from t_building_info
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_building_info
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_building_info (
+		id,status,developerId,nationId,provinceId,cityId,countryId,address,salesAddress,longitude,latitude,constructionCop,contactName,tel,fax,buildType,salePrice,describe,total,openTtime,deliveryTime,incentiveFund,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{status},#{developerId},#{nationId},#{provinceId},#{cityId},#{countryId},#{address},#{salesAddress},#{longitude},#{latitude},#{constructionCop},#{contactName},#{tel},#{fax},#{buildType},#{salePrice},#{describe},#{total},#{openTtime},#{deliveryTime},#{incentiveFund},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_building_info
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_building_info set
+		id=#{id},status=#{status},developerId=#{developerId},nationId=#{nationId},provinceId=#{provinceId},cityId=#{cityId},countryId=#{countryId},address=#{address},salesAddress=#{salesAddress},longitude=#{longitude},latitude=#{latitude},constructionCop=#{constructionCop},contactName=#{contactName},tel=#{tel},fax=#{fax},buildType=#{buildType},salePrice=#{salePrice},describe=#{describe},total=#{total},openTtime=#{openTtime},deliveryTime=#{deliveryTime},incentiveFund=#{incentiveFund},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.MetaRankDao">
+
+	<select id="findByPKey" resultType="MetaRankDo">
+		select * from t_meta_rank
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="MetaRankDo">
+		select * from t_meta_rank
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_meta_rank
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_meta_rank (
+		id,type,name,level,image,minPoint,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{type},#{name},#{level},#{image},#{minPoint},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_meta_rank
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_meta_rank set
+		id=#{id},type=#{type},name=#{name},level=#{level},image=#{image},minPoint=#{minPoint},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

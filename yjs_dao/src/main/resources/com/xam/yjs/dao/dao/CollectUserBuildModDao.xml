@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.CollectUserBuildModDao">
+
+	<select id="findByPKey" resultType="CollectUserBuildModDo">
+		select * from t_collect_user_buildMod
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="CollectUserBuildModDo">
+		select * from t_collect_user_buildMod
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_collect_user_buildMod
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_collect_user_buildMod (
+		id,accountId,buildModId,salesId,status,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{accountId},#{buildModId},#{salesId},#{status},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_collect_user_buildMod
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_collect_user_buildMod set
+		id=#{id},accountId=#{accountId},buildModId=#{buildModId},salesId=#{salesId},status=#{status},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

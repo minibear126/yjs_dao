@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.SysManagerAuthDao">
+
+	<select id="findByPKey" resultType="SysManagerAuthDo">
+		select * from meta_sys_manager_auth
+		where username=#{username}
+	</select>
+	
+	<select id="getList" resultType="SysManagerAuthDo">
+		select * from meta_sys_manager_auth
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from meta_sys_manager_auth
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into meta_sys_manager_auth (
+		username,role,CREATE_DATE,LAST_DATE
+		) values (
+		#{username},#{role},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from meta_sys_manager_auth
+		where username=#{username}	
+	</delete>
+	
+	<update id="update">
+		update meta_sys_manager_auth set
+		username=#{username},role=#{role},LAST_DATE=sysdate()
+		where username=#{username}
+	</update>
+	
+</mapper>

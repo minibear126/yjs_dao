@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.UserInfoDao">
+	<select id="findUserInfoInMysqlByUserAccountId" resultType="java.util.Map">
+		select a.*,b.vantages,b.validVantages,b.total,c.name,c.`level`,c.image 
+		from t_user_info as a 
+		inner join t_user_vantages as b 
+		on  a.accountId=b.accountId 
+		inner join t_meta_rank as c 
+		on b.rankId=c.id  
+		where a.accountId=#{accountId} 
+		and c.`type`=1
+	</select>
+
+
+
+
+
+	<select id="findByPKey" resultType="UserInfoDo">
+		select * from t_user_info
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="UserInfoDo">
+		select * from t_user_info
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_user_info
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_user_info (
+		id,accountId,name,recommend,nationId,provinceId,cityId,countryId,suggest,sex,status,address,tel,email,imageUrl,weixin,content,birthday,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{accountId},#{name},#{recommend},#{nationId},#{provinceId},#{cityId},#{countryId},#{suggest},#{sex},#{status},#{address},#{tel},#{email},#{imageUrl},#{weixin},#{content},#{birthday},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_user_info
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_user_info set
+		id=#{id},accountId=#{accountId},name=#{name},recommend=#{recommend},nationId=#{nationId},provinceId=#{provinceId},cityId=#{cityId},countryId=#{countryId},suggest=#{suggest},sex=#{sex},status=#{status},address=#{address},tel=#{tel},email=#{email},imageUrl=#{imageUrl},weixin=#{weixin},content=#{content},birthday=#{birthday},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

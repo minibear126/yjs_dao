@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.PaymentDiscountDao">
+
+	<select id="findByPKey" resultType="PaymentDiscountDo">
+		select * from t_payment_discount
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="PaymentDiscountDo">
+		select * from t_payment_discount
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_payment_discount
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_payment_discount (
+		id,agencyId,paymentId,discount,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{agencyId},#{paymentId},#{discount},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_payment_discount
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_payment_discount set
+		id=#{id},agencyId=#{agencyId},paymentId=#{paymentId},discount=#{discount},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

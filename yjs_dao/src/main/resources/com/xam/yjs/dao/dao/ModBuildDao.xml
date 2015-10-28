@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.ModBuildDao">
+
+	<select id="findByPKey" resultType="ModBuildDo">
+		select * from t_mod_build
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="ModBuildDo">
+		select * from t_mod_build
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_mod_build
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_mod_build (
+		id,buildId,buildName,developerDes,cover,address,lon,lat,tel,price,description,actionDes,total,openTime,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{buildId},#{buildName},#{developerDes},#{cover},#{address},#{lon},#{lat},#{tel},#{price},#{description},#{actionDes},#{total},#{openTime},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_mod_build
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_mod_build set
+		id=#{id},buildId=#{buildId},buildName=#{buildName},developerDes=#{developerDes},cover=#{cover},address=#{address},lon=#{lon},lat=#{lat},tel=#{tel},price=#{price},description=#{description},actionDes=#{actionDes},total=#{total},openTime=#{openTime},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

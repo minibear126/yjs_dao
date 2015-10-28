@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.WeixinUserInfoDao">
+
+	<select id="findByPKey" resultType="WeixinUserInfoDo">
+		select * from t_weixin_user_info
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="WeixinUserInfoDo">
+		select * from t_weixin_user_info
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_weixin_user_info
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_weixin_user_info (
+		id,nickname,groupName,city,country,province,language,headimgurl,accountId,groupId,subscribe,sex,subscribe_time,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{nickname},#{groupName},#{city},#{country},#{province},#{language},#{headimgurl},#{accountId},#{groupId},#{subscribe},#{sex},#{subscribe_time},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_weixin_user_info
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_weixin_user_info set
+		id=#{id},nickname=#{nickname},groupName=#{groupName},city=#{city},country=#{country},province=#{province},language=#{language},headimgurl=#{headimgurl},accountId=#{accountId},groupId=#{groupId},subscribe=#{subscribe},sex=#{sex},subscribe_time=#{subscribe_time},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

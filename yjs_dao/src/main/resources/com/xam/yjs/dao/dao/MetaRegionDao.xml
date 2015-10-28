@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.MetaRegionDao">
+
+	<select id="findByPKey" resultType="MetaRegionDo">
+		select * from t_meta_region
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="MetaRegionDo">
+		select * from t_meta_region
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_meta_region
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_meta_region (
+		id,parentId,name,level,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{parentId},#{name},#{level},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_meta_region
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_meta_region set
+		id=#{id},parentId=#{parentId},name=#{name},level=#{level},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xam.yjs.dao.dao.DeveloperInfoDao">
+
+	<select id="findByPKey" resultType="DeveloperInfoDo">
+		select * from t_developer_info
+		where id=#{id}
+	</select>
+	
+	<select id="getList" resultType="DeveloperInfoDo">
+		select * from t_developer_info
+		order by LAST_DATE desc
+	</select>
+	<select id="getTotalPage" resultType="int">
+		select count(*) from t_developer_info
+		
+	</select>
+	
+	
+	<insert id="insert">
+		insert into t_developer_info (
+		id,status,nationId,provinceId,cityId,countryId,address,longitude,latitude,license,developerName,contactName,tel,fax,CREATE_DATE,LAST_DATE
+		) values (
+		#{id},#{status},#{nationId},#{provinceId},#{cityId},#{countryId},#{address},#{longitude},#{latitude},#{license},#{developerName},#{contactName},#{tel},#{fax},sysdate(),sysdate()
+		)
+	</insert>
+	
+	<delete id="delete">
+		delete from t_developer_info
+		where id=#{id}	
+	</delete>
+	
+	<update id="update">
+		update t_developer_info set
+		id=#{id},status=#{status},nationId=#{nationId},provinceId=#{provinceId},cityId=#{cityId},countryId=#{countryId},address=#{address},longitude=#{longitude},latitude=#{latitude},license=#{license},developerName=#{developerName},contactName=#{contactName},tel=#{tel},fax=#{fax},LAST_DATE=sysdate()
+		where id=#{id}
+	</update>
+	
+</mapper>
