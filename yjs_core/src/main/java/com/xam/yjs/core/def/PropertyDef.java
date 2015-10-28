@@ -13,6 +13,7 @@ import com.xam.yjs.core.meta.PropertyType;
  
 public class PropertyDef {
 
+	
 	/* 属性类型定义 */
 	/* 发送方式 */
 	public static PropertyType PROP_TYPE_MESSAGE_PUSHTYPE = new PropertyType("Message pushType", "发送方式");
